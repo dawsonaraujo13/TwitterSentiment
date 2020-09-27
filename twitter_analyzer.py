@@ -4,8 +4,11 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy import Cursor
 
+import sys
 import twitter_credentials
-
+import numpy as np
+import pandas as pd
+import time
 
 class TStreamer():
     
@@ -56,11 +59,27 @@ class StdOutTweetListener(StreamListener):
 
 if __name__ == "__main__":
 
-    keyword_list = ['Donald Trump', 'Joe Biden']
+    keyword_list = []
+    print("\nWelcome to Sentimento!\nChoose one or more key words to track tweet sentiments on a topic in real time!\n")
+    user_input = input("Enter a keyword or \'done\':")
+    if(user_input == 'done'):
+        print('No keyword entered, exiting program.')
+        sys.exit
+
+    while( user_input != 'done'):
+        keyword_list += user_input
+        user_input = input("Enter a keyword or \'done\':")
+
+    
     captured_tweets_filename = "tweets.json"
 
     twitter_stream = TStreamer()
     twitter_stream.stream_tweets(captured_tweets_filename, keyword_list)
+
+    user_time = input('\nHow long do you want to collect tweets for? (seconds)')
+
+    time.sleep(user_time)
+    sys.exit
 
         
     
