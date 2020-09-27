@@ -70,13 +70,12 @@ if __name__ == "__main__":
         keyword_list += user_input
         user_input = input("Enter a keyword or \'done\':")
 
-    
+    user_time = input('\nHow long do you want to collect tweets for? (seconds)')
+
     captured_tweets_filename = "tweets.json"
 
     twitter_stream = TStreamer()
     twitter_stream.stream_tweets(captured_tweets_filename, keyword_list)
-
-    user_time = input('\nHow long do you want to collect tweets for? (seconds)')
 
     time.sleep(user_time)
     sys.exit
