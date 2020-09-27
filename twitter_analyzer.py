@@ -67,10 +67,13 @@ if __name__ == "__main__":
         print('No keyword entered, exiting program.')
         sys.exit
 
+    
     while( user_input != 'done'):
-        keyword_list.append(user_input)
+        keyword_list += [user_input]
         user_input = input("Enter a keyword or \'done\':")
 
+    print(keyword_list)
+    
     user_time = input('\nHow long do you want to collect tweets for? (seconds)')
 
     captured_tweets_filename = "tweets.json"
